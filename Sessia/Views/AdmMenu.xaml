@@ -1,0 +1,67 @@
+﻿<Window x:Class="Sessia.Views.AdmMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="AMONIC Airlines Automation System" Height="450" Width="800"  WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Menu Height="25" VerticalAlignment="Top" Background="White">
+            <MenuItem Header="Add user">
+                <Button Content="Add User" Click="AddUser_Click"/>
+            </MenuItem>
+            <MenuItem Header="Exit">
+                <Button Content="ExitMenu" Click="ExitMenu_Click"/>
+            </MenuItem>
+        </Menu>
+        <Separator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,-0.4,23.2" />
+        <Label Margin="0,24,164,0.2">
+            Office:
+        </Label>
+        <ComboBox x:Name="OfficesListCB" Margin="48,24,559.6,0.2" Grid.ColumnSpan="2" DisplayMemberPath="Title" SelectedIndex="0" SelectionChanged="OfficesListCB_SelectedChanged" />
+
+        <DataGrid x:Name="UsersListDG" Grid.ColumnSpan="2" Margin="0,9.8,-0.4,10" Grid.Row="1" Grid.RowSpan="5" AutoGenerateColumns="False">
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Active}" Value="false">
+                            <Setter Property="Background" Value="Red" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Active}" Value="true">
+                            <Setter Property="Background" Value="White" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RoleName}" Value="Administrator">
+                            <Setter Property="Background" Value="Green" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Path = FirstName}" />
+                <DataGridTextColumn Header="Last Name" IsReadOnly="True" Binding="{Binding Path = LastName}" />
+                <DataGridTextColumn Header="Age" IsReadOnly="True" Binding="{Binding Path = Age}" />
+                <DataGridTextColumn Header="User Role" IsReadOnly="True" Binding="{Binding Path = RoleName}" />
+                <DataGridTextColumn Header="Email Address" IsReadOnly="True" Binding="{Binding Path = Email}" />
+                <DataGridTextColumn Header="Office" IsReadOnly="True" Binding="{Binding Path = OfficeName}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="ChangeUserRole" Content="Change Role" Height="30" Width="150" Click="ChangeUserRole_Click" Margin="25,10,39,22" Grid.Row="6" />
+        <Button x:Name="DisableOrEnableUser" Content="Enable/Disable Login" Height="30" Width="150" Click="DisableOrEnableUser_Click" Margin="0,10,436,22" Grid.Row="6" Grid.Column="1" />
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="291*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+    </Grid>
+</Window>

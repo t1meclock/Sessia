@@ -1,0 +1,46 @@
+﻿<Window x:Class="Sessia.Views.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sessia"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="450" Width="800" MouseDown="MoveWindow" AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Border Background="White"  BorderBrush="LimeGreen" BorderThickness="2">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="106*"/>
+                <ColumnDefinition Width="291*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Image Grid.Row="1" Grid.ColumnSpan="2" Source="../images/DS2017_TP09_color.png"  Width="300" Height="250"/>
+            <Label  HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" FontWeight="Medium"  FontSize="20" Content="Username"/>
+            <Label  HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" FontWeight="Medium"  FontSize="20" Content="Password"/>
+            <TextBox x:Name="LoginTB" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" FontSize="25" TextWrapping="Wrap" Width="350" BorderBrush="Black" BorderThickness="2">
+                <TextBox.Resources>
+                </TextBox.Resources>
+            </TextBox>
+            <TextBox x:Name="PassTB" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" FontSize="25" TextWrapping="Wrap" Width="350" BorderBrush="Black" BorderThickness="2">
+                <TextBox.Resources>
+                </TextBox.Resources>
+            </TextBox>
+            <Button x:Name="AuthBtn" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Width="150" FontSize="15" BorderBrush="Black" BorderThickness="2" Content="Exit" Background="White" Foreground="Black" Margin="249.2,63.8,184.8,26.2" Click="ExitBtn_Click" Grid.RowSpan="2" Grid.Column="1">
+                <Button.Resources>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="ExitBtn" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Width="150" FontSize="15" BorderBrush="Black" BorderThickness="2" Content="Login" Background="White" Foreground="Black" Margin="10.2,6.6,423.8,32.4" Click="AuthBtn_Click" Grid.Column="1">
+                <Button.Resources>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Border>
+</Window>
