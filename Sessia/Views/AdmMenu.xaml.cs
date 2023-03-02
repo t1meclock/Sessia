@@ -39,11 +39,6 @@ namespace Sessia.Views
 
             con.Open();
 
-            if(con != null)
-            {
-                MessageBox.Show("Подключено.");
-            }
-
             InitializeComponent();
 
             InitializeLists();
@@ -116,7 +111,7 @@ namespace Sessia.Views
             ReadUsersByFilter();
         }
 
-        private void ReadAllUsers()
+        public void ReadAllUsers()
         {
             _UsersList.Clear();
             UsersListDG.ItemsSource = null;
@@ -263,7 +258,10 @@ namespace Sessia.Views
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
         {
+            AddUserWindow addUserWindow = new AddUserWindow(_UsersList.Last().Id);
 
+            addUserWindow.Owner = this;
+            addUserWindow.ShowDialog();
         }
 
         private void ExitMenu_Click(object sender, RoutedEventArgs e)
@@ -275,7 +273,20 @@ namespace Sessia.Views
 
         private void ChangeUserRole_Click(object sender, RoutedEventArgs e)
         {
+            User selectedUser = new User();
+            selectedUser = (User)UsersListDG.SelectedValue;
 
+            if(selectedUser == null)
+            {
+                MessageBox.Show("Выберите пользователя.");
+
+                return;
+            }
+
+            EditRoleWindow editRoleWindow = new EditRoleWindow(selectedUser.Id);
+
+            editRoleWindow.Owner = this;
+            editRoleWindow.ShowDialog();
         }
 
         private void DisableOrEnableUser_Click(object sender, RoutedEventArgs e)
@@ -283,9 +294,24 @@ namespace Sessia.Views
             User selectedUser = new User();
             selectedUser = (User)UsersListDG.SelectedValue;
 
+            bool isActive = false;
+
             if (selectedUser != null)
             {
+                if (!selectedUser.Active)
+                    isActive = true;
 
+                string query = "UPDATE Users SET Active = '" + isActive + "' WHERE ID = '" + selectedUser.Id + "'";
+                using(var cmd = new SqlCommand(query, con))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Данные пользователя успешно изменены.");
+
+                ReadAllUsers();
+
+                return;
             }
 
             MessageBox.Show("Выберите пользователя.");

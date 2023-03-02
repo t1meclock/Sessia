@@ -33,6 +33,10 @@
                         <DataTrigger Binding="{Binding RoleName}" Value="Administrator">
                             <Setter Property="Background" Value="Green" />
                         </DataTrigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.CellStyle>
